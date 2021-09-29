@@ -1,0 +1,84 @@
+name: Update
+
+on:
+  schedule:
+    - cron: 0 0 * * *
+  workflow_dispatch:
+
+defaults:
+  run:
+    shell: 'bash -Eeuo pipefail -x {0}'
+
+jobs:
+  update:
+    runs-on: ubuntu-20.04
+    steps:
+      -
+        uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.REPO_ACCESS_TOKEN }}
+          fetch-depth: 0
+      -
+        name: Get latest PgBouncer
+        run: |
+          echo PGBOUNCER_VERSION=$(curl -s https://api.github.com/repos/pgbouncer/pgbouncer/releases/latest | jq -r '.assets[].name' | grep -oP "pgbouncer-\K([[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+)(?=\.tar\.gz)") >> $GITHUB_ENV
+      -
+        name: Get latest UBI
+        run: |
+          echo UBI_VERSION=$(curl -sL https://registry.access.redhat.com/v2/ubi8-minimal/tags/list | jq -r '.tags[]' | grep -vE "(latest|source)" |sort -Vr | head -n 1) >> $GITHUB_ENV
+      -
+        name: Update Dockerfile
+        run: |
+          sed 's/%%PGBOUNCER_VERSION%%/${{ env.PGBOUNCER_VERSION }}/' Dockerfile.template | \
+          sed 's/%%UBI_VERSION%%/${{ env.UBI_VERSION }}/' > Dockerfile
+      -
+        name: Set up Docker Buildx
+        id: buildx
+        uses: docker/setup-buildx-action@v1
+      -
+        name: Build and export to Docker
+        uses: docker/build-push-action@v2.7.0
+        with:
+          context: .
+          load: true
+          push: false
+          tags: newimage
+      #TODO: Dockle scan and halt everything if we don't pass
+      -
+        name: Extract package list from container
+        run: |
+          docker run -t --entrypoint bash newimage -c 'rpm -qa | sort' > packages.txt
+      -
+        name: Check if the image is updated
+        run: |
+          if [ -z "$(git status --porcelain)" ]; then
+            echo UPDATED=false >> $GITHUB_ENV
+            exit 0;
+          fi
+
+          echo UPDATED=true >> $GITHUB_ENV
+      -
+        name: Define tag
+        if: github.ref == "refs/heads/main" && ${{ env.UPDATED }} == "true"
+        run: |
+          release_number=1
+          if git describe --tags; then
+            current_tag=$(git describe --tags --abbrev=0)
+            current_pgbouncer_version=$(echo $current_tag | cut -d'-' -f 1)
+            current_pgbouncer_version=${current_pgbouncer_version##v}
+            current_release=$(echo $current_tag | cut -d'-' -f 2)
+            if [ $current_pgbouncer_version = ${{ env.PGBOUNCER_VERSION }} ]; then
+              release_number=$((current_release+1))
+            fi
+          fi
+          echo TAG=${{ env.PGBOUNCER_VERSION }}-${release_number} >> $GITHUB_ENV
+      -
+        name: Commit changes
+        if: github.ref == "refs/heads/main" && ${{ env.UPDATED }} == "true"
+        uses: EndBug/add-and-commit@v7
+        id: commit
+        with:
+          author_name: EnterpriseDB Automated Updates
+          author_email: noreply@enterprisedb.com
+          message: 'Automatic update'
+          tag: v${{ env.TAG }}
