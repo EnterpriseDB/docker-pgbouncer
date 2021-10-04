@@ -10,20 +10,20 @@ RUN set -xe ; \
         rpm -i https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm ; \
         microdnf -y install make libevent libevent-devel pkg-config openssl openssl-devel \
             tar gzip gcc udns udns-devel ; \
-	microdnf -y clean all --enablerepo='*' ; \
+        microdnf -y clean all --enablerepo='*' ; \
         curl -sL http://www.pgbouncer.org/downloads/files/${PGBOUNCER_VERSION}/pgbouncer-${PGBOUNCER_VERSION}.tar.gz > pgbouncer.tar.gz ; \
         tar xzf pgbouncer.tar.gz ; \
         cd pgbouncer-${PGBOUNCER_VERSION} ; \
         ./configure --without-cares --with-udns ; \
         make
-        
+
 FROM registry.access.redhat.com/ubi8/ubi-minimal:${UBI_VERSION}
 ARG PGBOUNCER_VERSION
 
 RUN set -xe ; \
         rpm -i https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm ; \
-        microdnf -y install libevent openssl udns shadow-utils ; \
-	microdnf -y clean all --enablerepo='*' ; \
+        microdnf -y install libevent openssl udns shadow-utils findutils ; \
+        microdnf -y clean all --enablerepo='*' ; \
         adduser -r pgbouncer ; \
         mkdir -p /var/log/pgbouncer ; \
         mkdir -p /var/run/pgbouncer ; \
@@ -35,7 +35,10 @@ COPY --from=build ["/pgbouncer-${PGBOUNCER_VERSION}/etc/pgbouncer.ini", "/etc/pg
 COPY --from=build ["/pgbouncer-${PGBOUNCER_VERSION}/etc/userlist.txt", "/etc/pgbouncer/userlist.txt.example"]
 
 RUN touch /etc/pgbouncer/pgbouncer.ini /etc/pgbouncer/userlist.txt
-  
+
+# DoD 2.3 - remove setuid/setgid from any binary that not strictly requires it, and before doing that list them on the stdout
+RUN find / -not -path "/proc/*" -perm /6000 -type f -exec ls -ld {} \; -exec chmod a-s {} \; || true
+
 EXPOSE 6432
 USER pgbouncer
 
