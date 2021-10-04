@@ -19,13 +19,30 @@ RUN set -xe ; \
 
 FROM registry.access.redhat.com/ubi8/ubi-minimal:${UBI_VERSION}
 ARG PGBOUNCER_VERSION
+ARG TARGETARCH
 
 COPY root/ /
 
 RUN set -xe ; \
         rpm -i https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm ; \
+        ARCH="${TARGETARCH}" ; \
+        base_url="https://download.postgresql.org/pub/repos/yum/reporpms" ; \
+        case $ARCH in \
+            amd64) \
+                rpm -i "${base_url}/EL-8-x86_64/pgdg-redhat-repo-latest.noarch.rpm" ;; \
+            ppc64le) \
+                rpm -i "${base_url}/EL-8-ppc64le/pgdg-redhat-repo-latest.noarch.rpm" ;; \
+            arm64) \
+                rpm -i "${base_url}/EL-8-aarch64/pgdg-redhat-repo-latest.noarch.rpm" ;; \
+            s390x) \
+                bash /tmp/cs_script.sh ;; \
+            *) \
+                exit 1 ;; \
+        esac ; \
         microdnf -y install libevent openssl udns shadow-utils findutils ; \
+        microdnf -y install --setopt=install_weak_deps=0 --setopt=tsflags=nodocs --nodocs --noplugins postgresql13 ; \
         microdnf -y clean all --enablerepo='*' ; \
+        rm -fr /etc/yum.repos.d/enterprisedb-edb.repo ; \
         adduser -r pgbouncer ; \
         mkdir -p /var/log/pgbouncer ; \
         mkdir -p /var/run/pgbouncer ; \
