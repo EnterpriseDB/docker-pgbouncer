@@ -29,8 +29,10 @@ jobs:
       -
         name: Update Dockerfile
         run: |
-          sed 's/%%PGBOUNCER_VERSION%%/${{ env.PGBOUNCER_VERSION }}/' Dockerfile.template | \
-          sed 's/%%UBI_VERSION%%/${{ env.UBI_VERSION }}/' > Dockerfile
+          sed \
+            -e 's/%%PGBOUNCER_VERSION%%/${{ env.PGBOUNCER_VERSION }}/' \
+            -e 's/%%UBI_VERSION%%/${{ env.UBI_VERSION }}/' \
+            Dockerfile.template > Dockerfile
       -
         name: Set up Docker Buildx
         id: buildx
