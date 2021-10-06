@@ -29,8 +29,10 @@ jobs:
       -
         name: Update Dockerfile
         run: |
-          sed 's/%%PGBOUNCER_VERSION%%/${{ env.PGBOUNCER_VERSION }}/' Dockerfile.template | \
-          sed 's/%%UBI_VERSION%%/${{ env.UBI_VERSION }}/' > Dockerfile
+          sed \
+            -e 's/%%PGBOUNCER_VERSION%%/${{ env.PGBOUNCER_VERSION }}/' \
+            -e 's/%%UBI_VERSION%%/${{ env.UBI_VERSION }}/' \
+            Dockerfile.template > Dockerfile
       -
         name: Set up Docker Buildx
         id: buildx
@@ -43,7 +45,17 @@ jobs:
           load: true
           push: false
           tags: newimage
-      #TODO: Dockle scan and halt everything if we don't pass
+      -
+        name: Dockle scan
+        uses: erzz/dockle-action@v1.1.1
+        with:
+          image: newimage
+          exit-code: '1'
+          failure-threshold: WARN
+        env:
+          DOCKLE_USERNAME: ${{ secrets.QUAY_USERNAME }}
+          DOCKLE_PASSWORD: ${{ secrets.QUAY_TOKEN }}
+          DOCKLE_IGNORES: DKL-DI-0006
       -
         name: Extract package list from container
         run: |
@@ -59,7 +71,7 @@ jobs:
           echo UPDATED=true >> $GITHUB_ENV
       -
         name: Define tag
-        if: github.ref == "refs/heads/main" && ${{ env.UPDATED }} == "true"
+        if: ${{ github.ref == 'refs/heads/main' && env.UPDATED == 'true' }}
         run: |
           release_number=1
           if git describe --tags; then
@@ -74,7 +86,7 @@ jobs:
           echo TAG=${{ env.PGBOUNCER_VERSION }}-${release_number} >> $GITHUB_ENV
       -
         name: Commit changes
-        if: github.ref == "refs/heads/main" && ${{ env.UPDATED }} == "true"
+        if: ${{ github.ref == 'refs/heads/main' && env.UPDATED == 'true' }}
         uses: EndBug/add-and-commit@v7
         id: commit
         with:
