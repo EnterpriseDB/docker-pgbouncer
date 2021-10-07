@@ -49,24 +49,26 @@ jobs:
           username: ${{ secrets.QUAY_USERNAME }}
           password: ${{ secrets.QUAY_TOKEN }}
       -
-        name: Tag Docker image
-        id: docker-meta
+        name: Set image repository
+        id: image-repo
         run: |
-          if git describe --tags; then
-            image_tag=$(git describe --tags)
-            image_tag=${image_tag##v}
-          else
-            # Set a default if we have no tags yet
-            image_tag=0.0.1-1-$(git rev-parse --short HEAD)
-          fi
-          # If we are running the pipeline on a tag images are pushed in both
-          # testing and prod, only testing otherwise
           if [[ "${GITHUB_REF}" =~ refs/tags/v(.*) ]]; then
-            result="${IMAGE_RELEASE}:${image_tag},${IMAGE_STAGING}:${image_tag}"
+            echo "::set-output name=images::${{ env.IMAGE_RELEASE }},${{ env.IMAGE_STAGING }}"
           else
-            result="${IMAGE_STAGING}:${image_tag}"
+            echo "::set-output name=images::${{ env.IMAGE_STAGING }}"
           fi
-          echo "::set-output name=tags::${result%,}"
+      -
+        name: Docker meta
+        id: docker-meta
+        uses: docker/metadata-action@v3.5.0
+        with:
+          # list of Docker images to use as base name for tags
+          images: "${{ steps.image-repo.outputs.images }}"
+          # generate Docker tags based on the following events/attributes
+          tags: |
+            type=match,pattern=v(.*),group=1
+            type=match,pattern=v(.*)-\d+,group=1
+            type=ref,event=branch
       - 
         name: Build and push
         uses: docker/build-push-action@v2.7.0
