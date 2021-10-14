@@ -20,6 +20,8 @@ RUN set -xe ; \
 FROM registry.access.redhat.com/ubi8/ubi-minimal:${UBI_VERSION}
 ARG PGBOUNCER_VERSION
 
+COPY root/ /
+
 RUN set -xe ; \
         rpm -i https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm ; \
         microdnf -y install libevent openssl udns shadow-utils findutils ; \
