@@ -23,7 +23,8 @@ ARG TARGETARCH
 
 COPY root/ /
 
-RUN set -xe ; \
+RUN --mount=type=secret,id=cs_script,target=/tmp/cs_script.sh \
+        set -xe ; \
         rpm -i https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm ; \
         ARCH="${TARGETARCH}" ; \
         base_url="https://download.postgresql.org/pub/repos/yum/reporpms" ; \
