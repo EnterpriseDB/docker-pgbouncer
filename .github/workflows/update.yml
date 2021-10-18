@@ -61,14 +61,20 @@ jobs:
         run: |
           docker run -t --entrypoint bash newimage -c 'rpm -qa | sort' > packages.txt
       -
-        name: Check if the image is updated
+        # We verify if there has been any change in the image. It could be:
+        # * a pgbouncer update
+        # * a new UBI base image
+        # * any change in the installed packages
+        # * any change in the git repository except the pipeline
+        name: Check if the image has been updated since the latest tag
         run: |
-          if [ -z "$(git status --porcelain)" ]; then
-            echo UPDATED=false >> $GITHUB_ENV
-            exit 0;
+          echo UPDATED=false >> $GITHUB_ENV
+          if git describe --tags; then
+            current_tag=$(git describe --tags --abbrev=0)
+            if [[ -n $(git diff --name-status  ${current_tag} -- . ':(exclude)README.md' ':(exclude).github' ':(exclude).gitignore') ]]; then
+              echo UPDATED=true >> $GITHUB_ENV
+            fi
           fi
-
-          echo UPDATED=true >> $GITHUB_ENV
       -
         name: Define tag
         if: ${{ github.ref == 'refs/heads/main' && env.UPDATED == 'true' }}
@@ -86,12 +92,12 @@ jobs:
           echo TAG=${{ env.PGBOUNCER_VERSION }}-${release_number} >> $GITHUB_ENV
       -
         name: Temporarily disable "include administrators" branch protection
-        if: always()
+        if: ${{ always() && github.ref == 'refs/heads/main' && env.UPDATED == 'true' }}
         id: disable_include_admins
         uses: benjefferies/branch-protection-bot@1.0.7
         with:
           access_token: ${{ secrets.REPO_GHA_PAT }}
-          branch: ${{ github.event.repository.default_branch }}
+          branch: main
           enforce_admins: false
       -
         name: Commit changes
@@ -106,8 +112,8 @@ jobs:
       -
         name: Enable "include administrators" branch protection
         uses: benjefferies/branch-protection-bot@1.0.7
-        if: always()  # Force to always run this step to ensure "include administrators" is always turned back on
+        if: ${{ always() && github.ref == 'refs/heads/main' && env.UPDATED == 'true' }}
         with:
           access_token: ${{ secrets.REPO_GHA_PAT }}
-          branch: ${{ github.event.repository.default_branch }}
+          branch: main
           enforce_admins: ${{ steps.disable_include_admins.outputs.initial_status }}
