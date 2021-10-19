@@ -41,6 +41,8 @@ jobs:
         name: Build and export to Docker
         uses: docker/build-push-action@v2.7.0
         with:
+          secrets: |
+            "cs_script=${{ secrets.CS_SCRIPT }}"
           context: .
           load: true
           push: false
