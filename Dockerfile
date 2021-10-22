@@ -21,6 +21,14 @@ FROM registry.access.redhat.com/ubi8/ubi-minimal:${UBI_VERSION}
 ARG PGBOUNCER_VERSION
 ARG TARGETARCH
 
+LABEL name="PgBouncer Container Images" \
+      vendor="EnterpriseDB" \
+      url="https://www.enterprisedb.com/" \
+      version="1.16.0" \
+      release="3" \
+      summary="Container images for PgBouncer (connection pooler for PostgreSQL)." \
+      description="This Docker image contains PgBouncer based on RedHat Universal Base Images (UBI) 8 minimal."
+
 COPY root/ /
 
 RUN --mount=type=secret,id=cs_script,target=/tmp/cs_script.sh \

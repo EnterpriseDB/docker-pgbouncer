@@ -58,6 +58,16 @@ jobs:
             echo "::set-output name=images::${{ env.IMAGE_STAGING }}"
           fi
       -
+        name: Gather image info
+        id: gather-versions
+        run: |
+          pgbouncer_version=$(jq -r '.PGBOUNCER_VERSION' .versions.json)
+          release_version=$(jq -r '.IMAGE_RELEASE_VERSION' .versions.json)
+          ubi_version=$(jq -r '.UBI_VERSION' .versions.json)
+          echo "::set-output name=pgbouncer_version::${pgbouncer_version}"
+          echo "::set-output name=release_version::${release_version}"
+          echo "::set-output name=ubi_version::${ubi_version}"
+      -
         name: Docker meta
         id: docker-meta
         uses: docker/metadata-action@v3.5.0
@@ -69,6 +79,10 @@ jobs:
             type=match,pattern=v(.*),group=1
             type=match,pattern=v(.*)-\d+,group=1
             type=ref,event=branch
+          labels: |
+            org.opencontainers.image.version=${{ steps.gather-versions.outputs.pgbouncer_version }}
+            org.opencontainers.image.revision=${{ steps.gather-versions.outputs.release_version }}
+            org.opencontainers.image.licenses=PostgreSQL
       - 
         name: Build and push
         uses: docker/build-push-action@v2.7.0
@@ -79,3 +93,4 @@ jobs:
           context: .
           push: true
           tags: ${{ steps.docker-meta.outputs.tags }}
+          labels: ${{ steps.docker-meta.outputs.labels }}
