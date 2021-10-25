@@ -104,7 +104,7 @@ jobs:
             -e 's/%%UBI_VERSION%%/${{ env.UBI_VERSION }}/' \
             -e 's/%%IMAGE_RELEASE_VERSION%%/${{ env.IMAGE_RELEASE_VERSION }}/' \
             Dockerfile.template > Dockerfile
-          jq -S '.PGBOUNCER_VERSION = "${{ env.PGBOUNCER_VERSION }}" | .IMAGE_RELEASE_VERSION = "{{ env.IMAGE_RELEASE_VERSION }}" | .UBI_VERSION = "${{ env.UBI_VERSION }}"' < .versions.json >> .versions.json.new
+          jq -S '.PGBOUNCER_VERSION = "${{ env.PGBOUNCER_VERSION }}" | .IMAGE_RELEASE_VERSION = "${{ env.IMAGE_RELEASE_VERSION }}" | .UBI_VERSION = "${{ env.UBI_VERSION }}"' < .versions.json >> .versions.json.new
           mv .versions.json.new .versions.json
       -
         name: Temporarily disable "include administrators" branch protection
