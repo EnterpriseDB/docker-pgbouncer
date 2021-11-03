@@ -21,7 +21,6 @@ jobs:
       -
         uses: actions/checkout@v2
         with:
-          token: ${{ secrets.REPO_ACCESS_TOKEN }}
           fetch-depth: 0
       -
         name: Detect platforms
