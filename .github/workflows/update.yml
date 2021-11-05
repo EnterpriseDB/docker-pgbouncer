@@ -29,9 +29,11 @@ jobs:
       -
         name: Update Dockerfile
         run: |
+          INITIAL_RELEASE_VERSION=$(jq -r '.IMAGE_RELEASE_VERSION' .versions.json)
           sed \
             -e 's/%%PGBOUNCER_VERSION%%/${{ env.PGBOUNCER_VERSION }}/' \
             -e 's/%%UBI_VERSION%%/${{ env.UBI_VERSION }}/' \
+            -e "s/%%IMAGE_RELEASE_VERSION%%/${INITIAL_RELEASE_VERSION}/" \
             Dockerfile.template > Dockerfile
       -
         name: Set up Docker Buildx
