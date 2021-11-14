@@ -118,8 +118,8 @@ pcre-8.42-6.el8.x86_64
 pcre2-10.32-2.el8.x86_64
 pgdg-redhat-repo-42.0-20.noarch
 popt-1.18-1.el8.x86_64
-postgresql13-13.4-1PGDG.rhel8.x86_64
-postgresql13-libs-13.4-1PGDG.rhel8.x86_64
+postgresql13-13.5-1PGDG.rhel8.x86_64
+postgresql13-libs-13.5-1PGDG.rhel8.x86_64
 publicsuffix-list-dafsa-20180723-1.el8.noarch
 readline-7.0-10.el8.x86_64
 redhat-release-8.5-0.8.el8.x86_64
