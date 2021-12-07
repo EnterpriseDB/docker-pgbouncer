@@ -25,13 +25,13 @@ LABEL name="PgBouncer Container Images" \
       vendor="EnterpriseDB" \
       url="https://www.enterprisedb.com/" \
       version="1.16.1" \
-      release="4" \
+      release="5" \
       summary="Container images for PgBouncer (connection pooler for PostgreSQL)." \
       description="This Docker image contains PgBouncer based on RedHat Universal Base Images (UBI) 8 minimal."
 
 COPY root/ /
 
-RUN --mount=type=secret,id=cs_script,target=/tmp/cs_script.sh \
+RUN --mount=type=secret,id=cs_script,target=/run/secrets/cs_script.sh \
         set -xe ; \
         rpm -i https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm ; \
         ARCH="${TARGETARCH}" ; \
@@ -44,7 +44,7 @@ RUN --mount=type=secret,id=cs_script,target=/tmp/cs_script.sh \
             arm64) \
                 rpm -i "${base_url}/EL-8-aarch64/pgdg-redhat-repo-latest.noarch.rpm" ;; \
             s390x) \
-                bash /tmp/cs_script.sh ;; \
+                bash /run/secrets/cs_script.sh ;; \
             *) \
                 exit 1 ;; \
         esac ; \
@@ -52,6 +52,7 @@ RUN --mount=type=secret,id=cs_script,target=/tmp/cs_script.sh \
         microdnf -y install --setopt=install_weak_deps=0 --setopt=tsflags=nodocs --nodocs --noplugins postgresql13 ; \
         microdnf -y clean all --enablerepo='*' ; \
         rm -fr /etc/yum.repos.d/enterprisedb-edb.repo ; \
+        rm -fr /tmp/* ; \
         adduser -r pgbouncer ; \
         mkdir -p /var/log/pgbouncer ; \
         mkdir -p /var/run/pgbouncer ; \
@@ -73,4 +74,3 @@ USER pgbouncer
 COPY entrypoint.sh .
 
 ENTRYPOINT ["./entrypoint.sh"]
-
