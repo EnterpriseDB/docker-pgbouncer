@@ -41,8 +41,6 @@ RUN --mount=type=secret,id=cs_script,target=/run/secrets/cs_script.sh \
                 rpm -i "${base_url}/EL-8-x86_64/pgdg-redhat-repo-latest.noarch.rpm" ;; \
             ppc64le) \
                 rpm -i "${base_url}/EL-8-ppc64le/pgdg-redhat-repo-latest.noarch.rpm" ;; \
-            arm64) \
-                rpm -i "${base_url}/EL-8-aarch64/pgdg-redhat-repo-latest.noarch.rpm" ;; \
             s390x) \
                 bash /run/secrets/cs_script.sh ;; \
             *) \
