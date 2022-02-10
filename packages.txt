@@ -23,7 +23,7 @@ device-mapper-libs-1.02.177-10.el8.x86_64
 elfutils-default-yama-scope-0.185-1.el8.noarch
 elfutils-libelf-0.185-1.el8.x86_64
 elfutils-libs-0.185-1.el8.x86_64
-epel-release-8-13.el8.noarch
+epel-release-8-14.el8.noarch
 expat-2.2.5-4.el8.x86_64
 file-libs-5.33-20.el8.x86_64
 filesystem-3.8-6.el8.x86_64
