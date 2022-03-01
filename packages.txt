@@ -12,7 +12,7 @@ cracklib-dicts-2.9.6-15.el8.x86_64
 crypto-policies-20210617-1.gitc776d3e.el8.noarch
 cryptsetup-libs-2.3.3-4.el8_5.1.x86_64
 curl-7.61.1-22.el8.x86_64
-cyrus-sasl-lib-2.1.27-5.el8.x86_64
+cyrus-sasl-lib-2.1.27-6.el8_5.x86_64
 dbus-1.12.8-14.el8.x86_64
 dbus-common-1.12.8-14.el8.noarch
 dbus-daemon-1.12.8-14.el8.x86_64
