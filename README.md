@@ -2,7 +2,7 @@
 
 **IMPORTANT:** This project has been open sourced by EnterpriseDB
 and donated to the CloudNativePG Community. The source code has been
-moved at https://github.com/cloudnative-pg/pgbouncer-containers.
+moved to https://github.com/cloudnative-pg/pgbouncer-containers.
 As a result, this repository will be closed in the near future.
 
 ## Obsolete content
