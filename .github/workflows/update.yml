@@ -51,14 +51,13 @@ jobs:
           tags: newimage
       -
         name: Dockle scan
-        uses: erzz/dockle-action@v1.1.1
+        uses: erzz/dockle-action@v1.3.1
         with:
           image: newimage
           exit-code: '1'
           failure-threshold: WARN
+          accept-keywords: key
         env:
-          DOCKLE_USERNAME: ${{ secrets.QUAY_USERNAME }}
-          DOCKLE_PASSWORD: ${{ secrets.QUAY_TOKEN }}
           DOCKLE_IGNORES: DKL-DI-0006
       -
         name: Extract package list from container
