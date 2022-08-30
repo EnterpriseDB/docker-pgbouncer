@@ -130,9 +130,9 @@ sed-4.5-5.el8.x86_64
 setup-2.12.2-6.el8.noarch
 shadow-utils-4.6-16.el8.x86_64
 sqlite-libs-3.26.0-15.el8.x86_64
-systemd-239-58.el8_6.3.x86_64
-systemd-libs-239-58.el8_6.3.x86_64
-systemd-pam-239-58.el8_6.3.x86_64
+systemd-239-58.el8_6.4.x86_64
+systemd-libs-239-58.el8_6.4.x86_64
+systemd-pam-239-58.el8_6.4.x86_64
 tzdata-2022a-1.el8.noarch
 udns-0.4-13.el8.x86_64
 util-linux-2.32.1-35.el8.x86_64
