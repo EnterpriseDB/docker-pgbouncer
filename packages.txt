@@ -24,7 +24,7 @@ elfutils-default-yama-scope-0.186-1.el8.noarch
 elfutils-libelf-0.186-1.el8.x86_64
 elfutils-libs-0.186-1.el8.x86_64
 epel-release-8-17.el8.noarch
-expat-2.2.5-8.el8_6.2.x86_64
+expat-2.2.5-8.el8_6.3.x86_64
 file-libs-5.33-20.el8.x86_64
 filesystem-3.8-6.el8.x86_64
 findutils-4.6.0-20.el8.x86_64
