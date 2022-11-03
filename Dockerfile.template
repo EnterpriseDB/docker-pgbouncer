@@ -51,7 +51,8 @@ RUN --mount=type=secret,id=cs_script,target=/run/secrets/cs_script.sh \
         microdnf -y clean all --enablerepo='*' ; \
         rm -fr /etc/yum.repos.d/enterprisedb-edb.repo ; \
         rm -fr /tmp/* ; \
-        adduser -r pgbouncer ; \
+        groupadd -r --gid 996 pgbouncer ; \
+        useradd -r --uid 998 --gid 996 pgbouncer ; \
         mkdir -p /var/log/pgbouncer ; \
         mkdir -p /var/run/pgbouncer ; \
         chown pgbouncer:pgbouncer /var/log/pgbouncer ; \
