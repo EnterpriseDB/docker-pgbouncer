@@ -24,21 +24,19 @@ jobs:
           fetch-depth: 0
       -
         name: Detect platforms
-        id: docker-platforms
         run: |
           # Available architecture on UBI8 are: linux/amd64, linux/ppc64le, linux/s390x
           # Keep in mind that adding more platforms (architectures) will increase the building
           # time even if we use the ghcache for the building process.
           platforms="linux/amd64,linux/ppc64le,linux/s390x"
-          echo "::set-output name=platforms::${platforms}"
+          echo "PLATFORMS=${platforms}" >> $GITHUB_ENV
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v2
         with:
-          platforms: ${{ steps.docker-platforms.outputs.platforms }}
+          platforms: ${{ env.PLATFORMS }}
       -
         name: Set up Docker Buildx
-        id: buildx
         uses: docker/setup-buildx-action@v2
       -
         name: Login to quay.io
@@ -49,38 +47,36 @@ jobs:
           password: ${{ secrets.QUAY_TOKEN }}
       -
         name: Set image repository
-        id: image-repo
         run: |
           if [[ "${GITHUB_REF}" =~ refs/tags/v(.*) ]]; then
-            echo "::set-output name=images::${{ env.IMAGE_RELEASE }},${{ env.IMAGE_STAGING }}"
+            echo "IMAGES=${{ env.IMAGE_RELEASE }},${{ env.IMAGE_STAGING }}" >> $GITHUB_ENV
           else
-            echo "::set-output name=images::${{ env.IMAGE_STAGING }}"
+            echo "IMAGES=${{ env.IMAGE_STAGING }}" >> $GITHUB_ENV
           fi
       -
         name: Gather image info
-        id: gather-versions
         run: |
           pgbouncer_version=$(jq -r '.PGBOUNCER_VERSION' .versions.json)
           release_version=$(jq -r '.IMAGE_RELEASE_VERSION' .versions.json)
           ubi_version=$(jq -r '.UBI_VERSION' .versions.json)
-          echo "::set-output name=pgbouncer_version::${pgbouncer_version}"
-          echo "::set-output name=release_version::${release_version}"
-          echo "::set-output name=ubi_version::${ubi_version}"
+          echo "PGBOUNCER_VERSION=${pgbouncer_version}" >> $GITHUB_ENV
+          echo "RELEASE_VERSION=${release_version}" >> $GITHUB_ENV
+          echo "UBI_VERSION=${ubi_version}" >> $GITHUB_ENV
       -
         name: Docker meta
         id: docker-meta
         uses: docker/metadata-action@v4
         with:
           # list of Docker images to use as base name for tags
-          images: "${{ steps.image-repo.outputs.images }}"
+          images: "${{ env.IMAGES }}"
           # generate Docker tags based on the following events/attributes
           tags: |
             type=match,pattern=v(.*),group=1
             type=match,pattern=v(.*)-\d+,group=1
             type=ref,event=branch
           labels: |
-            org.opencontainers.image.version=${{ steps.gather-versions.outputs.pgbouncer_version }}
-            org.opencontainers.image.revision=${{ steps.gather-versions.outputs.release_version }}
+            org.opencontainers.image.version=${{ env.PGBOUNCER_VERSION }}
+            org.opencontainers.image.revision=${{ env.RELEASE_VERSION }}
             org.opencontainers.image.licenses=PostgreSQL
       - 
         name: Build and push
@@ -88,7 +84,7 @@ jobs:
         with:
           secrets: |
             "cs_script=${{ secrets.CS_SCRIPT }}"
-          platforms: ${{ steps.docker-platforms.outputs.platforms }}
+          platforms: ${{ env.PLATFORMS }}
           context: .
           push: true
           tags: ${{ steps.docker-meta.outputs.tags }}

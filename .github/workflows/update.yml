@@ -37,7 +37,6 @@ jobs:
             Dockerfile.template > Dockerfile
       -
         name: Set up Docker Buildx
-        id: buildx
         uses: docker/setup-buildx-action@v2
       -
         name: Build and export to Docker
