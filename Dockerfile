@@ -1,5 +1,5 @@
 # vim:set ft=dockerfile:
-ARG UBI_VERSION=8.6-941
+ARG UBI_VERSION=8.6-994
 ARG PGBOUNCER_VERSION=1.17.0
 
 FROM registry.access.redhat.com/ubi8/ubi-minimal:${UBI_VERSION} AS build
@@ -25,7 +25,7 @@ LABEL name="PgBouncer Container Images" \
       vendor="EnterpriseDB" \
       url="https://www.enterprisedb.com/" \
       version="1.17.0" \
-      release="23" \
+      release="24" \
       summary="Container images for PgBouncer (connection pooler for PostgreSQL)." \
       description="This Docker image contains PgBouncer based on RedHat Universal Base Images (UBI) 8 minimal."
 
