@@ -25,7 +25,7 @@ LABEL name="PgBouncer Container Images" \
       vendor="EnterpriseDB" \
       url="https://www.enterprisedb.com/" \
       version="1.18.0" \
-      release="6" \
+      release="7" \
       summary="Container images for PgBouncer (connection pooler for PostgreSQL)." \
       description="This Docker image contains PgBouncer based on RedHat Universal Base Images (UBI) 8 minimal."
 
@@ -39,6 +39,8 @@ RUN --mount=type=secret,id=cs_script,target=/run/secrets/cs_script.sh \
         case $ARCH in \
             amd64) \
                 rpm -i "${base_url}/EL-8-x86_64/pgdg-redhat-repo-latest.noarch.rpm" ;; \
+            arm64) \
+                rpm -i "${base_url}/EL-8-aarch64/pgdg-redhat-repo-latest.noarch.rpm" ;; \
             ppc64le) \
                 rpm -i "${base_url}/EL-8-ppc64le/pgdg-redhat-repo-latest.noarch.rpm" ;; \
             s390x) \
