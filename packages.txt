@@ -11,7 +11,7 @@ cracklib-2.9.6-15.el8.x86_64
 cracklib-dicts-2.9.6-15.el8.x86_64
 crypto-policies-20211116-1.gitae470d6.el8.noarch
 cryptsetup-libs-2.3.7-2.el8.x86_64
-curl-7.61.1-25.el8_7.1.x86_64
+curl-7.61.1-25.el8_7.2.x86_64
 cyrus-sasl-lib-2.1.27-6.el8_5.x86_64
 dbus-1.12.8-23.el8_7.1.x86_64
 dbus-common-1.12.8-23.el8_7.1.noarch
@@ -57,7 +57,7 @@ libblkid-2.32.1-39.el8_7.x86_64
 libcap-2.48-4.el8.x86_64
 libcap-ng-0.7.11-1.el8.x86_64
 libcom_err-1.45.6-5.el8.x86_64
-libcurl-7.61.1-25.el8_7.1.x86_64
+libcurl-7.61.1-25.el8_7.2.x86_64
 libdb-5.3.28-42.el8_4.x86_64
 libdb-utils-5.3.28-42.el8_4.x86_64
 libdnf-0.63.0-11.1.el8.x86_64
@@ -130,9 +130,9 @@ sed-4.5-5.el8.x86_64
 setup-2.12.2-7.el8.noarch
 shadow-utils-4.6-17.el8.x86_64
 sqlite-libs-3.26.0-17.el8_7.x86_64
-systemd-239-68.el8_7.2.x86_64
-systemd-libs-239-68.el8_7.2.x86_64
-systemd-pam-239-68.el8_7.2.x86_64
+systemd-239-68.el8_7.4.x86_64
+systemd-libs-239-68.el8_7.4.x86_64
+systemd-pam-239-68.el8_7.4.x86_64
 tzdata-2022g-1.el8.noarch
 udns-0.4-13.el8.x86_64
 util-linux-2.32.1-39.el8_7.x86_64
