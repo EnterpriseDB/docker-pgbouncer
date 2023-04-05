@@ -35,7 +35,7 @@ glibc-common-2.28-211.el8.x86_64
 glibc-minimal-langpack-2.28-211.el8.x86_64
 gmp-6.1.2-10.el8.x86_64
 gnupg2-2.2.20-3.el8_6.x86_64
-gnutls-3.6.16-5.el8_6.x86_64
+gnutls-3.6.16-6.el8_7.x86_64
 gobject-introspection-1.56.1-1.el8.x86_64
 gpg-pubkey-d4082792-5b32db75
 gpg-pubkey-fd431d51-4ae0493b
