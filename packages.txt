@@ -13,11 +13,11 @@ crypto-policies-20211116-1.gitae470d6.el8.noarch
 cryptsetup-libs-2.3.7-5.el8.x86_64
 curl-7.61.1-25.el8.x86_64
 cyrus-sasl-lib-2.1.27-6.el8_5.x86_64
-dbus-1.12.8-24.el8.x86_64
-dbus-common-1.12.8-24.el8.noarch
-dbus-daemon-1.12.8-24.el8.x86_64
-dbus-libs-1.12.8-24.el8.x86_64
-dbus-tools-1.12.8-24.el8.x86_64
+dbus-1.12.8-24.el8_8.1.x86_64
+dbus-common-1.12.8-24.el8_8.1.noarch
+dbus-daemon-1.12.8-24.el8_8.1.x86_64
+dbus-libs-1.12.8-24.el8_8.1.x86_64
+dbus-tools-1.12.8-24.el8_8.1.x86_64
 device-mapper-1.02.181-9.el8.x86_64
 device-mapper-libs-1.02.181-9.el8.x86_64
 elfutils-default-yama-scope-0.188-3.el8.noarch
