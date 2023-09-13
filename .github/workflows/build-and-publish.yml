@@ -80,7 +80,7 @@ jobs:
             org.opencontainers.image.licenses=PostgreSQL
       - 
         name: Build and push
-        uses: docker/build-push-action@v4
+        uses: docker/build-push-action@v5
         with:
           secrets: |
             "cs_script=${{ secrets.CS_SCRIPT }}"
