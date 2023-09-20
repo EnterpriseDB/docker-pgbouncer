@@ -27,7 +27,7 @@ epel-release-8-19.el8.noarch
 expat-2.2.5-11.el8.x86_64
 file-libs-5.33-21.el8.x86_64
 filesystem-3.8-6.el8.x86_64
-findutils-4.6.0-20.el8.x86_64
+findutils-4.6.0-20.el8_8.1.x86_64
 gawk-4.2.1-4.el8.x86_64
 glib2-2.56.4-159.el8.x86_64
 glibc-2.28-211.el8.x86_64
@@ -131,9 +131,9 @@ sed-4.5-5.el8.x86_64
 setup-2.12.2-7.el8.noarch
 shadow-utils-4.6-17.el8.x86_64
 sqlite-libs-3.26.0-16.el8_6.x86_64
-systemd-239-74.el8_8.3.x86_64
-systemd-libs-239-74.el8_8.3.x86_64
-systemd-pam-239-74.el8_8.3.x86_64
+systemd-239-74.el8_8.5.x86_64
+systemd-libs-239-74.el8_8.5.x86_64
+systemd-pam-239-74.el8_8.5.x86_64
 tzdata-2022e-1.el8.noarch
 udns-0.4-13.el8.x86_64
 util-linux-2.32.1-42.el8_8.x86_64
