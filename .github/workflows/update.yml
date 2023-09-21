@@ -40,7 +40,7 @@ jobs:
         uses: docker/setup-buildx-action@v2
       -
         name: Build and export to Docker
-        uses: docker/build-push-action@v4
+        uses: docker/build-push-action@v5
         with:
           secrets: |
             "cs_script=${{ secrets.CS_SCRIPT }}"
