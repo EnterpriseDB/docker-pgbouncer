@@ -11,7 +11,7 @@ cracklib-2.9.6-15.el8.x86_64
 cracklib-dicts-2.9.6-15.el8.x86_64
 crypto-policies-20230731-1.git3177e06.el8.noarch
 cryptsetup-libs-2.3.7-7.el8.x86_64
-curl-7.61.1-33.el8.x86_64
+curl-7.61.1-33.el8_9.5.x86_64
 cyrus-sasl-lib-2.1.27-6.el8_5.x86_64
 dbus-1.12.8-26.el8.x86_64
 dbus-common-1.12.8-26.el8.noarch
@@ -24,7 +24,7 @@ elfutils-default-yama-scope-0.189-3.el8.noarch
 elfutils-libelf-0.189-3.el8.x86_64
 elfutils-libs-0.189-3.el8.x86_64
 epel-release-8-19.el8.noarch
-expat-2.2.5-11.el8.x86_64
+expat-2.2.5-11.el8_9.1.x86_64
 file-libs-5.33-25.el8.x86_64
 filesystem-3.8-6.el8.x86_64
 findutils-4.6.0-21.el8.x86_64
@@ -33,7 +33,7 @@ glib2-2.56.4-161.el8.x86_64
 glibc-2.28-236.el8_9.12.x86_64
 glibc-common-2.28-236.el8_9.12.x86_64
 glibc-minimal-langpack-2.28-236.el8_9.12.x86_64
-gmp-6.1.2-10.el8.x86_64
+gmp-6.1.2-11.el8_8.1.x86_64
 gnupg2-2.2.20-3.el8_6.x86_64
 gnutls-3.6.16-8.el8_9.1.x86_64
 gobject-introspection-1.56.1-1.el8.x86_64
@@ -53,16 +53,16 @@ libacl-2.2.53-1.el8.x86_64
 libarchive-3.3.3-5.el8.x86_64
 libassuan-2.5.1-3.el8.x86_64
 libattr-2.4.48-3.el8.x86_64
-libblkid-2.32.1-43.el8.x86_64
+libblkid-2.32.1-44.el8_9.1.x86_64
 libcap-2.48-6.el8_9.x86_64
 libcap-ng-0.7.11-1.el8.x86_64
 libcom_err-1.45.6-5.el8.x86_64
-libcurl-7.61.1-33.el8.x86_64
+libcurl-7.61.1-33.el8_9.5.x86_64
 libdb-5.3.28-42.el8_4.x86_64
 libdb-utils-5.3.28-42.el8_4.x86_64
 libdnf-0.63.0-17.el8_9.x86_64
 libevent-2.1.8-5.el8.x86_64
-libfdisk-2.32.1-43.el8.x86_64
+libfdisk-2.32.1-44.el8_9.1.x86_64
 libffi-3.1-24.el8.x86_64
 libgcc-8.5.0-20.el8.x86_64
 libgcrypt-1.8.5-7.el8_6.x86_64
@@ -71,7 +71,7 @@ libicu-60.3-2.el8_1.x86_64
 libidn2-2.2.0-1.el8.x86_64
 libksba-1.3.5-9.el8_7.x86_64
 libmodulemd-2.13.0-1.el8.x86_64
-libmount-2.32.1-43.el8.x86_64
+libmount-2.32.1-44.el8_9.1.x86_64
 libnghttp2-1.33.0-5.el8_9.x86_64
 libnsl2-1.2.0-2.20180605git4a062cf.el8.x86_64
 libpeas-1.22.0-6.el8.x86_64
@@ -84,7 +84,7 @@ libselinux-2.9-8.el8.x86_64
 libsemanage-2.9-9.el8_6.x86_64
 libsepol-2.9-3.el8.x86_64
 libsigsegv-2.11-5.el8.x86_64
-libsmartcols-2.32.1-43.el8.x86_64
+libsmartcols-2.32.1-44.el8_9.1.x86_64
 libsolv-0.7.20-6.el8.x86_64
 libssh-0.9.6-13.el8_9.x86_64
 libssh-config-0.9.6-13.el8_9.noarch
@@ -94,7 +94,7 @@ libtirpc-1.1.4-8.el8.x86_64
 libunistring-0.9.9-3.el8.x86_64
 libusbx-1.0.23-4.el8.x86_64
 libutempter-1.1.6-14.el8.x86_64
-libuuid-2.32.1-43.el8.x86_64
+libuuid-2.32.1-44.el8_9.1.x86_64
 libverto-0.3.2-2.el8.x86_64
 libxcrypt-4.1.1-6.el8.x86_64
 libxml2-2.9.7-18.el8_9.x86_64
@@ -133,8 +133,8 @@ sqlite-libs-3.26.0-19.el8_9.x86_64
 systemd-239-78.el8.x86_64
 systemd-libs-239-78.el8.x86_64
 systemd-pam-239-78.el8.x86_64
-tzdata-2024a-1.el8.noarch
+tzdata-2023d-1.el8.noarch
 udns-0.4-13.el8.x86_64
-util-linux-2.32.1-43.el8.x86_64
+util-linux-2.32.1-44.el8_9.1.x86_64
 xz-libs-5.2.4-4.el8_6.x86_64
 zlib-1.2.11-25.el8.x86_64
