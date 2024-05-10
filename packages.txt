@@ -30,12 +30,12 @@ filesystem-3.8-6.el8.x86_64
 findutils-4.6.0-21.el8.x86_64
 gawk-4.2.1-4.el8.x86_64
 glib2-2.56.4-161.el8.x86_64
-glibc-2.28-236.el8_9.12.x86_64
-glibc-common-2.28-236.el8_9.12.x86_64
-glibc-minimal-langpack-2.28-236.el8_9.12.x86_64
-gmp-6.1.2-11.el8_8.1.x86_64
+glibc-2.28-236.el8_9.13.x86_64
+glibc-common-2.28-236.el8_9.13.x86_64
+glibc-minimal-langpack-2.28-236.el8_9.13.x86_64
+gmp-6.1.2-10.el8.x86_64
 gnupg2-2.2.20-3.el8_6.x86_64
-gnutls-3.6.16-8.el8_9.1.x86_64
+gnutls-3.6.16-8.el8_9.3.x86_64
 gobject-introspection-1.56.1-1.el8.x86_64
 gpg-pubkey-d4082792-5b32db75
 gpg-pubkey-fd431d51-4ae0493b
@@ -118,8 +118,8 @@ pcre-8.42-6.el8.x86_64
 pcre2-10.32-3.el8_6.x86_64
 pgdg-redhat-repo-42.0-43PGDG.noarch
 popt-1.18-1.el8.x86_64
-postgresql13-13.14-1PGDG.rhel8.x86_64
-postgresql13-libs-13.14-1PGDG.rhel8.x86_64
+postgresql13-13.15-1PGDG.rhel8.x86_64
+postgresql13-libs-13.15-1PGDG.rhel8.x86_64
 publicsuffix-list-dafsa-20180723-1.el8.noarch
 readline-7.0-10.el8.x86_64
 redhat-release-8.9-0.1.el8.x86_64
@@ -133,7 +133,7 @@ sqlite-libs-3.26.0-19.el8_9.x86_64
 systemd-239-78.el8.x86_64
 systemd-libs-239-78.el8.x86_64
 systemd-pam-239-78.el8.x86_64
-tzdata-2023d-1.el8.noarch
+tzdata-2024a-1.el8.noarch
 udns-0.4-13.el8.x86_64
 util-linux-2.32.1-44.el8_9.1.x86_64
 xz-libs-5.2.4-4.el8_6.x86_64
