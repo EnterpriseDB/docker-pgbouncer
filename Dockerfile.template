@@ -31,7 +31,7 @@ LABEL name="PgBouncer Container Images" \
 
 COPY root/ /
 
-RUN --mount=type=secret,id=cs_script,target=/run/secrets/cs_script.sh \
+RUN --mount=type=secret,id=cs_token \
         set -xe ; \
         rpm -i https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm ; \
         ARCH="${TARGETARCH}" ; \
@@ -42,9 +42,9 @@ RUN --mount=type=secret,id=cs_script,target=/run/secrets/cs_script.sh \
             arm64) \
                 rpm -i "${base_url}/EL-9-aarch64/pgdg-redhat-repo-latest.noarch.rpm" ;; \
             ppc64le) \
-                rpm -i "${base_url}/EL-9-ppc64le/pgdg-redhat-repo-latest.noarch.rpm" ;; \
+                curl -u token:$(cat /run/secrets/cs_token) -1sLf https://downloads.enterprisedb.com/basic/enterprise/setup.rpm.sh | bash ;; \
             s390x) \
-                bash /run/secrets/cs_script.sh ;; \
+                curl -u token:$(cat /run/secrets/cs_token) -1sLf https://downloads.enterprisedb.com/basic/edb/setup.rpm.sh | bash ;; \
             *) \
                 exit 1 ;; \
         esac ; \

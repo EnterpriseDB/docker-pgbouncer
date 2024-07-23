@@ -83,7 +83,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           secrets: |
-            "cs_script=${{ secrets.CS_SCRIPT }}"
+            "cs_token=${{ secrets.CLOUDSMITH_READ_ALL }}"
           platforms: ${{ env.PLATFORMS }}
           context: .
           push: true
