@@ -1,13 +1,13 @@
 # vim:set ft=dockerfile:
-ARG UBI_VERSION=8.10-1018
+ARG UBI_VERSION=9.4-1194
 ARG PGBOUNCER_VERSION=1.23.0
 
-FROM registry.access.redhat.com/ubi8/ubi-minimal:${UBI_VERSION} AS build
+FROM registry.access.redhat.com/ubi9/ubi-minimal:${UBI_VERSION} AS build
 ARG PGBOUNCER_VERSION
 
 # Install build dependencies. EPEL repository is required by udns
 RUN set -xe ; \
-        rpm -i https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm ; \
+        rpm -i https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm ; \
         microdnf -y install make libevent libevent-devel pkg-config openssl openssl-devel \
             tar gzip gcc udns udns-devel ; \
         microdnf -y clean all --enablerepo='*' ; \
@@ -17,7 +17,7 @@ RUN set -xe ; \
         ./configure --without-cares --with-udns ; \
         make
 
-FROM registry.access.redhat.com/ubi8/ubi-minimal:${UBI_VERSION}
+FROM registry.access.redhat.com/ubi9/ubi-minimal:${UBI_VERSION}
 ARG PGBOUNCER_VERSION
 ARG TARGETARCH
 
@@ -25,31 +25,31 @@ LABEL name="PgBouncer Container Images" \
       vendor="EnterpriseDB" \
       url="https://www.enterprisedb.com/" \
       version="1.23.0" \
-      release="2" \
+      release="3" \
       summary="Container images for PgBouncer (connection pooler for PostgreSQL)." \
-      description="This Docker image contains PgBouncer based on RedHat Universal Base Images (UBI) 8 minimal."
+      description="This Docker image contains PgBouncer based on RedHat Universal Base Images (UBI) 9 minimal."
 
 COPY root/ /
 
-RUN --mount=type=secret,id=cs_script,target=/run/secrets/cs_script.sh \
+RUN --mount=type=secret,id=cs_token \
         set -xe ; \
-        rpm -i https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm ; \
+        rpm -i https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm ; \
         ARCH="${TARGETARCH}" ; \
         base_url="https://download.postgresql.org/pub/repos/yum/reporpms" ; \
         case $ARCH in \
             amd64) \
-                rpm -i "${base_url}/EL-8-x86_64/pgdg-redhat-repo-latest.noarch.rpm" ;; \
+                rpm -i "${base_url}/EL-9-x86_64/pgdg-redhat-repo-latest.noarch.rpm" ;; \
             arm64) \
-                rpm -i "${base_url}/EL-8-aarch64/pgdg-redhat-repo-latest.noarch.rpm" ;; \
+                rpm -i "${base_url}/EL-9-aarch64/pgdg-redhat-repo-latest.noarch.rpm" ;; \
             ppc64le) \
-                rpm -i "${base_url}/EL-8-ppc64le/pgdg-redhat-repo-latest.noarch.rpm" ;; \
+                curl -u token:$(cat /run/secrets/cs_token) -1sLf https://downloads.enterprisedb.com/basic/enterprise/setup.rpm.sh | bash ;; \
             s390x) \
-                bash /run/secrets/cs_script.sh ;; \
+                curl -u token:$(cat /run/secrets/cs_token) -1sLf https://downloads.enterprisedb.com/basic/edb/setup.rpm.sh | bash ;; \
             *) \
                 exit 1 ;; \
         esac ; \
         microdnf -y install libevent openssl udns shadow-utils findutils ; \
-        microdnf -y install --setopt=install_weak_deps=0 --setopt=tsflags=nodocs --nodocs --noplugins postgresql13 ; \
+        microdnf -y install --setopt=install_weak_deps=0 --setopt=tsflags=nodocs --nodocs --noplugins postgresql16 ; \
         microdnf -y clean all --enablerepo='*' ; \
         rm -fr /etc/yum.repos.d/enterprisedb-edb.repo ; \
         rm -fr /tmp/* ; \
