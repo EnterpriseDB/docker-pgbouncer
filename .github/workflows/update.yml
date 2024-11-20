@@ -37,7 +37,7 @@ jobs:
       -
         name: Get latest UBI
         run: |
-          UBI_VERSION=$(skopeo list-tags docker://registry.access.redhat.com/ubi9-minimal | jq -r '.Tags[]' | grep -vE "(latest|source|.att|.sig)" | sort -Vr | head -n1)
+          UBI_VERSION=$(skopeo list-tags docker://registry.access.redhat.com/ubi9-minimal | jq -r '.Tags[]' | grep -vE '(latest$|source$|.att$|.sig$|.sbom$|^sha256)' | sort -Vr | head -n1)
           if [ -z "$UBI_VERSION" ]
           then
             echo "UBI9 minimal latest tag could not be retrieved"
