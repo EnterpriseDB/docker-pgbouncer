@@ -3,7 +3,7 @@ alternatives-1.24-1.el9_5.1.x86_64
 audit-libs-3.1.5-1.el9.x86_64
 basesystem-11-13.el9.noarch
 bash-5.1.8-9.el9.x86_64
-bzip2-libs-1.0.8-8.el9.x86_64
+bzip2-libs-1.0.8-10.el9_5.x86_64
 ca-certificates-2024.2.69_v8.0.303-91.4.el9_4.noarch
 coreutils-single-8.32-36.el9.x86_64
 cracklib-2.9.6-27.el9.x86_64
