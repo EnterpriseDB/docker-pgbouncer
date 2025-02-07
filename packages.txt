@@ -134,7 +134,7 @@ systemd-252-46.el9_5.2.x86_64
 systemd-libs-252-46.el9_5.2.x86_64
 systemd-pam-252-46.el9_5.2.x86_64
 systemd-rpm-macros-252-46.el9_5.2.noarch
-tzdata-2024b-2.el9.noarch
+tzdata-2025a-1.el9.noarch
 udns-0.5-1.el9.x86_64
 util-linux-2.37.4-20.el9.x86_64
 util-linux-core-2.37.4-20.el9.x86_64
