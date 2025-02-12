@@ -103,10 +103,10 @@ ncurses-libs-6.2-10.20210508.el9.x86_64
 nettle-3.9.1-1.el9.x86_64
 npth-1.6-8.el9.x86_64
 openldap-2.6.6-3.el9.x86_64
-openssl-3.2.2-6.el9_5.x86_64
+openssl-3.2.2-6.el9_5.1.x86_64
 openssl-fips-provider-3.0.7-6.el9_5.x86_64
 openssl-fips-provider-so-3.0.7-6.el9_5.x86_64
-openssl-libs-3.2.2-6.el9_5.x86_64
+openssl-libs-3.2.2-6.el9_5.1.x86_64
 p11-kit-0.25.3-3.el9_5.x86_64
 p11-kit-trust-0.25.3-3.el9_5.x86_64
 pam-1.5.1-22.el9_5.x86_64
