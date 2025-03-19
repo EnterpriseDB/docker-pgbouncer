@@ -25,7 +25,7 @@ LABEL name="PgBouncer Container Images" \
       vendor="EnterpriseDB" \
       url="https://www.enterprisedb.com/" \
       version="1.24.0" \
-      release="9" \
+      release="10" \
       summary="Container images for PgBouncer (connection pooler for PostgreSQL)." \
       description="This Docker image contains PgBouncer based on RedHat Universal Base Images (UBI) 9 minimal."
 
