@@ -111,7 +111,7 @@ pam-1.5.1-22.el9_5.x86_64
 pcre-8.44-4.el9.x86_64
 pcre2-10.40-6.el9.x86_64
 pcre2-syntax-10.40-6.el9.noarch
-pgdg-redhat-repo-42.0-46PGDG.noarch
+pgdg-redhat-repo-42.0-50PGDG.noarch
 popt-1.18-8.el9.x86_64
 postgresql16-16.8-1PGDG.rhel9.x86_64
 postgresql16-libs-16.8-1PGDG.rhel9.x86_64
