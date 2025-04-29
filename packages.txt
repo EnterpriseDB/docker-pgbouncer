@@ -25,9 +25,9 @@ fonts-filesystem-2.0.5-7.el9.1.noarch
 gawk-5.1.0-6.el9.x86_64
 gdbm-libs-1.23-1.el9.x86_64
 glib2-2.68.4-14.el9_4.1.x86_64
-glibc-2.34-125.el9_5.3.x86_64
-glibc-common-2.34-125.el9_5.3.x86_64
-glibc-minimal-langpack-2.34-125.el9_5.3.x86_64
+glibc-2.34-125.el9_5.8.x86_64
+glibc-common-2.34-125.el9_5.8.x86_64
+glibc-minimal-langpack-2.34-125.el9_5.8.x86_64
 gmp-6.2.0-13.el9.x86_64
 gnupg2-2.3.3-4.el9.x86_64
 gnutls-3.8.3-4.el9_4.x86_64
@@ -128,7 +128,7 @@ systemd-252-46.el9_5.3.x86_64
 systemd-libs-252-46.el9_5.3.x86_64
 systemd-pam-252-46.el9_5.3.x86_64
 systemd-rpm-macros-252-46.el9_5.3.noarch
-tzdata-2025a-1.el9.noarch
+tzdata-2025b-1.el9.noarch
 udns-0.5-1.el9.x86_64
 util-linux-2.37.4-20.el9.x86_64
 util-linux-core-2.37.4-20.el9.x86_64
