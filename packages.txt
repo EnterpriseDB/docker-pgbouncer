@@ -16,7 +16,7 @@ dbus-broker-28-7.el9.x86_64
 dbus-common-1.12.20-8.el9.noarch
 dejavu-sans-fonts-2.37-18.el9.noarch
 dnf-data-4.14.0-17.el9.noarch
-epel-release-9-9.el9.noarch
+epel-release-9-10.el9.noarch
 expat-2.5.0-3.el9_5.3.x86_64
 file-libs-5.39-16.el9.x86_64
 filesystem-3.16-5.el9.x86_64
