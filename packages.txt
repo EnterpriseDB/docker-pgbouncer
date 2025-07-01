@@ -25,9 +25,9 @@ fonts-filesystem-2.0.5-7.el9.1.noarch
 gawk-5.1.0-6.el9.x86_64
 gdbm-libs-1.23-1.el9.x86_64
 glib2-2.68.4-16.el9.x86_64
-glibc-2.34-168.el9_6.19.x86_64
-glibc-common-2.34-168.el9_6.19.x86_64
-glibc-minimal-langpack-2.34-168.el9_6.19.x86_64
+glibc-2.34-168.el9_6.20.x86_64
+glibc-common-2.34-168.el9_6.20.x86_64
+glibc-minimal-langpack-2.34-168.el9_6.20.x86_64
 gmp-6.2.0-13.el9.x86_64
 gnupg2-2.3.3-4.el9.x86_64
 gnutls-3.8.3-6.el9.x86_64
@@ -112,7 +112,7 @@ pam-1.5.1-25.el9_6.x86_64
 pcre-8.44-4.el9.x86_64
 pcre2-10.40-6.el9.x86_64
 pcre2-syntax-10.40-6.el9.noarch
-pgdg-redhat-repo-42.0-50PGDG.noarch
+pgdg-redhat-repo-42.0-54PGDG.noarch
 popt-1.18-8.el9.x86_64
 postgresql16-16.9-3PGDG.rhel9.x86_64
 postgresql16-libs-16.9-3PGDG.rhel9.x86_64
