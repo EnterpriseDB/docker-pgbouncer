@@ -24,7 +24,7 @@ findutils-4.8.0-7.el9.x86_64
 fonts-filesystem-2.0.5-7.el9.1.noarch
 gawk-5.1.0-6.el9.x86_64
 gdbm-libs-1.23-1.el9.x86_64
-glib2-2.68.4-16.el9.x86_64
+glib2-2.68.4-16.el9_6.2.x86_64
 glibc-2.34-168.el9_6.20.x86_64
 glibc-common-2.34-168.el9_6.20.x86_64
 glibc-minimal-langpack-2.34-168.el9_6.20.x86_64
