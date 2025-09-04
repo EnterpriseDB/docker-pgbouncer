@@ -108,7 +108,7 @@ openssl-fips-provider-so-3.0.7-6.el9_5.x86_64
 openssl-libs-3.2.2-6.el9_5.1.x86_64
 p11-kit-0.25.3-3.el9_5.x86_64
 p11-kit-trust-0.25.3-3.el9_5.x86_64
-pam-1.5.1-25.el9_6.x86_64
+pam-1.5.1-26.el9_6.x86_64
 pcre-8.44-4.el9.x86_64
 pcre2-10.40-6.el9.x86_64
 pcre2-syntax-10.40-6.el9.noarch
