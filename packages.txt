@@ -30,7 +30,7 @@ glibc-common-2.34-168.el9_6.23.x86_64
 glibc-minimal-langpack-2.34-168.el9_6.23.x86_64
 gmp-6.2.0-13.el9.x86_64
 gnupg2-2.3.3-4.el9.x86_64
-gnutls-3.8.3-6.el9.x86_64
+gnutls-3.8.3-6.el9_6.2.x86_64
 gobject-introspection-1.68.0-11.el9.x86_64
 gpg-pubkey-5a6340b3-6229229e
 gpg-pubkey-fd431d51-4ae0493b
