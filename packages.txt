@@ -125,10 +125,10 @@ sed-4.8-9.el9.x86_64
 setup-2.13.7-10.el9.noarch
 shadow-utils-4.9-12.el9.x86_64
 sqlite-libs-3.34.1-8.el9_6.x86_64
-systemd-252-51.el9_6.2.x86_64
-systemd-libs-252-51.el9_6.2.x86_64
-systemd-pam-252-51.el9_6.2.x86_64
-systemd-rpm-macros-252-51.el9_6.2.noarch
+systemd-252-51.el9_6.3.x86_64
+systemd-libs-252-51.el9_6.3.x86_64
+systemd-pam-252-51.el9_6.3.x86_64
+systemd-rpm-macros-252-51.el9_6.3.noarch
 tzdata-2025b-1.el9.noarch
 udns-0.5-1.el9.x86_64
 util-linux-2.37.4-21.el9.x86_64
